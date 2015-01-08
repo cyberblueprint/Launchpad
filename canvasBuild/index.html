@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Launchpad</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+	<section data-role="page">
+            <header data-role="header" data-theme="b">
+                <h1>ADVERTISING BANNER</h1>
+            </header>
+
+            <canvas id="appArea"></canvas>
+            <div id="container"></div>
+
+            <footer data-role="footer" data-theme="b" data-position="fixed" data-tap-toggle="false">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#" class="ui-btn ui-icon-audio ui-btn-icon-notext">record</a></li>
+                        <li><a href="#load" class="ui-btn ui-icon-grid ui-btn-icon-notext">grid</a></li>
+                        <li><a href="#" class="ui-btn ui-icon-recycle ui-btn-icon-notext">clear</a></li>
+                        <li><a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext">delete</a></li>
+                    </ul>
+                </nav>
+            </footer>
+    </section>
+
+    <section data-role="page" id="load">
+        <header data-role="header" data-theme="b">
+            <h1>ADVERTISING BANNER</h1>
+        </header>
+       <section>
+            <canvas id="selectAudio">
+                <input type="file" accept="audio/*">
+            </canvas>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed" data-tap-toggle="false">
+            <nav data-role="navbar">
+                <ul>
+                    <li><a href="#" class="ui-btn ui-icon-audio ui-btn-icon-notext">record</a></li>
+                    <li><a href="#" class="ui-btn ui-icon-grid ui-btn-icon-notext">grid</a></li>
+                    <li><a href="#" class="ui-btn ui-icon-recycle ui-btn-icon-notext">clear</a></li>
+                    <li><a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext">delete</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </section>
+
+
+
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script type="text/javascript" src="js/backbone.js"></script>
+<!-- 
+<script type="text/javascript" src="js/touchTarget2.js"></script>
+<script type="text/javascript" src="js/test1.js"></script>
+ -->
+<script type="text/javascript" src="js/kinecticjs.js"></script>
+<script type="text/javascript" src="js/kinect.js"></script>
+
+</body>
+</html>

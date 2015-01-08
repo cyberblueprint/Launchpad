@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css"/>
+        <link rel="stylesheet" href="css/main.css">
+
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            playAudio();
+        }
+        var my_media = null;
+        var mediaTimer = null;
+        function playAudio(src) {
+            my_media = new Media(src, onSuccess, onError);
+            my_media.play();
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    my_media.getCurrentPosition(
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " sec");
+                            }
+                        },
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
+        function pauseAudio() {
+            if (my_media) {
+                my_media.pause();
+            }
+        }
+        function stopAudio() {
+            if (my_media) {
+                my_media.stop();
+            }
+            clearInterval(mediaTimer);
+            mediaTimer = null;
+        }
+        function onSuccess() {
+            console.log("playAudio():Audio Success");
+        }
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+        function setAudioPosition(position) {
+            document.getElementById('audio_position').innerHTML = position;
+        }
+    </script>
+
+	<title>App Init</title>
+	</head>
+<body>
+
+<section id="launchpad" data-role="page">
+	<header data-role="header" data-theme="b">
+		<h2>Ads</h2>
+	</header>
+	<div id="box" onclick="playAudio('/android_asset/www/butons/boton1.mp3');"></div>
+	<div id="box2" onclick="pauseAudio();"></div>
+	<div id="box3" onclick="stopAudio();"></div>
+	<div id="box4"></div>
+	<div id="box5"></div>
+	<div id="box6"></div>
+	<div id="box7"></div>
+	<div id="box8"></div>
+	<div id="box9"></div>
+	<div id="box10"></div>
+	<div id="box11"></div>
+	<div id="box12"></div>
+
+	<footer data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn ui-icon-audio ui-btn-icon-notext">Record</a></li>
+				<li><a href="#load" class="ui-btn ui-icon-grid ui-btn-icon-notext">Upload</a></li>
+				<li><a href="#" class="ui-btn ui-icon-recycle ui-btn-icon-notext">Refresh</a></li>
+				<li><a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext">Clear</a></li>
+			</ul>
+		</nav>
+	</footer>
+</section>
+
+<section id="load" data-role="page">
+	<header data-role="header" data-theme="b">
+		<h2>Ads</h2>
+	</header>
+
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+	<div class="nox">Load</div>
+
+
+	<footer data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn ui-icon-audio ui-btn-icon-notext">Record</a></li>
+				<li><a href="#load" class="ui-btn ui-icon-cloud ui-btn-icon-notext">Upload</a></li>
+				<li><a href="#" class="ui-btn ui-icon-recycle ui-btn-icon-notext">Refresh</a></li>
+				<li><a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext">Clear</a></li>
+			</ul>
+		</nav>
+	</footer>
+</section>
+
+	
+	<!--<script type="text/javascript">
+		$(document).on('deviceready', App.initialize());	
+	</script>-->
+	
+</body>
+</html>

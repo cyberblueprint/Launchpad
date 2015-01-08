@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<style>
+		canvas {
+			background-color: grey;
+		}
+	</style>
+</head>
+<body>
+	
+<canvas id="myApp"></canvas>
+
+<script>
+	
+var canvas = document.getElementById('myApp');
+var ctx = canvas.getContext('2d');
+var width = window.innerWidth;
+var height = window.innerHeight;
+var shapelist = [];
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+document.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+});
+
+// canvas.addEventListener('touchmove', function(event) {
+//   for (var i = 0; i < event.touches.length; i++) {
+//   	console.log(event);
+//     var touch = event.touches[i];
+//     ctx.beginPath();
+//     ctx.arc(touch.pageX, touch.pageY, 20, 0, 2*Math.PI, true);
+//     ctx.fill();
+//     ctx.stroke();
+//   }
+// }, false);
+
+var obj1 = ctx.fillRect(0, 0, 100, 100);
+
+
+obj1.addEventListener('touchmove', function(event) {
+  for (var i = 0; i < event.targetTouches; i++) {
+    var touch = event.targetTouches[i];
+    console.log('touched ' + touch.identifier);
+  }
+}, false);
+
+
+</script>
+</body>
+
+
+</html>

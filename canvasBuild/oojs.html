@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project Object Orientation</title>
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+
+	<div id="myLaunchpad" class="launchpad">
+		<span id="button1" class="launchpad-button" data-src="audio/boton1.mp3"></span>
+		<span id="button2" class="launchpad-button" data-src="audio/boton2.mp3"></span>
+		<span id="button3" class="launchpad-button" data-src="audio/boton3.mp3"></span>
+		<span id="button4" class="launchpad-button" data-src="audio/boton4.mp3"></span>
+		<span id="button5" class="launchpad-button" data-src="audio/boton5.mp3"></span>
+		<span id="button6" class="launchpad-button" data-src="audio/boton6.mp3"></span>
+		<span id="button7" class="launchpad-button" data-src="audio/boton7.mp3"></span>
+		<span id="button8" class="launchpad-button" data-src="audio/boton8.mp3"></span>
+		<span id="button9" class="launchpad-button" data-src="audio/boton9.mp3"></span>
+		<span id="button10" class="launchpad-button" data-src="audio/boton10.mp3"></span>
+		<span id="button11" class="launchpad-button" data-src="audio/boton11.mp3"></span>
+	</div>
+
+<script type="text/javascript" src="js/eventtarget.js"></script>
+<script type="text/javascript" src="js/app.js"></script>	
+
+<script>
+toolbar.addListener("itemremoved", function(evt){
+	alert(evt.type);
+})
+
+toolbar.items[0].addListener("enabledchanged", function (evt) {
+	alert(evt.value);
+})
+
+	// var listener1 = function (evt) {
+	// 	alert(evt.type);
+	// }
+
+	// var listener2 = function (evt) {
+	// 	alert(evt.target);
+	// }
+
+	// var obj = new EventTarget();
+	// obj.addListener("load", listener1);
+	// obj.addListener("load", listener2);
+
+	// obj.__fire({ type: "load" });
+
+	// obj.removeListener("load", listener1);
+	// obj.removeListener("load", listener2);
+
+	// obj.__fire({ type: "load" });
+</script>
+</body>
+</html>

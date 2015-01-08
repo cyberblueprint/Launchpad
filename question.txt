@@ -1,0 +1,99 @@
+Hi everyone! I wish you could help me with this one.
+I have 3 square buttons drawn on a canvas element and the idea is that each time someone touches any square it will change it's fill color and when release it will comeback to it's original one. It work fine using the touchstart, but when I release any button, all of them gets to it's original ones. So each button is depending in the other and I need to make the behaviour independent from each other.
+
+This is my script file until now:
+
+    var canvas = document.getElementById('appArea');
+    var ctx = canvas.getContext('2d');
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var shapelist = [];
+    
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    
+    
+    var Square = function (x, y, size, ctx) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.selected = false;
+        this.color = 'blue';
+    }
+    
+    Square.prototype.render = function() {
+        ctx.beginPath();
+        ctx.rect(this.x, this.y, this.size, this.size);
+        if (this.selected) {
+            ctx.fillStyle = "red";
+        } else  {
+            ctx.fillStyle = this.color;
+        }
+        ctx.fill();
+    
+    };
+    
+    
+    var generateSquares = function () {
+        var theSize = width/3 - 10;
+        var space = theSize + 10;
+        for (var i = 0; i < 3; i++) {
+            var theX = 0;
+            var theY = i * (space);
+            var square = new Square(theX, theY, theSize, ctx);
+            square.render();
+            shapelist.push(square);
+        }
+            
+        
+    }
+    
+    var getCoords = function (x, y) {
+        var validCoords = [];
+    
+        for(var index in shapelist){
+            var shape = shapelist[index];
+            var startX = shape.x;
+            var endX = shape.x + shape.size;
+            var startY = shape.y;
+            var endY = shape.y + shape.size;
+    
+            if (x >= startX && x <= endX && y >= startY && y <= endY) {
+                validCoords.push(shape);
+            }
+        }
+        return validCoords;
+    } 
+    
+    
+    var startEvent = function(e) {
+        canvas.addEventListener('touchstart', function (e) {
+            for (var i = 0; i < e.touches.length; i++) {
+                var shapes = getCoords(e.touches[i].pageX, e.touches[i].pageY);
+                // if shapes exists from a click event   
+                if (shapes.length) {       
+                    var selectedShape = shapes[shapes.length-1];
+                    selectedShape.selected = true;
+                    this.addEventListener('touchend', function(e) {
+                        selectedShape.selected=false;
+                        render();
+                    }, false);
+                }
+                render();
+            }
+            
+        }, false);
+    }
+    
+    
+    var render = function(){
+        ctx.clearRect(0, 0, this.width, this.height);
+        for(index in shapelist){
+            shapelist[index].render();
+        }
+    }
+    
+    generateSquares();
+    startEvent();
+    render();
+

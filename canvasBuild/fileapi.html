@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File System API</title>
+	<style type="text/css">
+	body {
+		font-size: 16px;
+	}
+	</style>
+
+	<script type="text/javascript">
+	function init() {
+	        var bHaveFileAPI = (window.File && window.FileReader);
+
+	        if (!bHaveFileAPI) {
+	            alert("This browser doesn't support the File API");
+	            return;
+	        }
+
+	        document.getElementById("fileElem").addEventListener("change", onFileChanged);
+	}
+
+    function onFileChanged(theEvt) {
+    	console.log(theEvt);
+        var files = theEvt.target.files;
+        var totalBytes = 0;
+
+        for (var i = 0; i < files.length; i++) {
+            var fileInfo = "<p>File name: " + files[i].name + "; size: " + files[i].size + "; type: " + files[i].type + "</p>";
+            totalBytes += files[i].size;
+            document.getElementById('filedata').innerHTML += fileInfo;
+        }
+        document.getElementById('filedata').innerHTML += "<p>Total of " + files.length + " files, " + totalBytes + " bytes.";
+    }
+
+
+
+	window.addEventListener("load",init);
+
+
+	</script>
+</head>
+<body>
+
+<form action="">
+	<label>Select a file: </label>
+	<input type="file" name="files" id="fileElem" multiple=""/>
+</form>
+<div id="filedata"></div>
+
+<p>File Name:<span id="filename"></span></p>
+<p>File Size:<span id="filesize"></span></p>
+<p>File Type:<span id="filetype"></span></p>
+
+
+
+</body>
+</html>
